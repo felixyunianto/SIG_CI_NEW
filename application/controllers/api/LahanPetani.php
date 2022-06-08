@@ -13,7 +13,17 @@ class LahanPetani extends REST_Controller{
     }
 
     function index_get(){
-        $response = $this->LahanPetaniModel->get();
+        $id = $this->get('id');
+
+        if($id) {
+            $response = [
+                "error" => false,
+                "message" => "Get detail success",
+                "data" => $this->LahanPetaniModel->getDataById($id)
+            ];
+        }else{
+            $response = $this->LahanPetaniModel->get();
+        }
 
         $this->response($response);
     }
