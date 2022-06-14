@@ -54,4 +54,33 @@ class User_m extends CI_Model {
         $this->db->delete('user');
     }
 
+    public function validateEmailOrUsername($username){
+        $this->db->where('username', $username);
+        $this->db->or_where('email', $username);
+
+        $user = $this->db->get('user');
+
+        if($user){
+            return $user->result_array();
+        }
+
+        return false;
+    }
+
+    public function changepassword($email, $password){
+        $data = [
+            'password' => sha1($password),
+        ];
+
+        $this->db->where('email', $email);
+        $update = $this->db->update('user', $data);
+
+        if($update){
+            return true;
+        }
+
+        return false;
+        
+    }
+
 }

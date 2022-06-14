@@ -35,25 +35,18 @@
               </div>
               <!-- /.login-logo -->
               <div class="login-box-body">
-                  <p class="login-box-msg">Login terlebih dahulu untuk memulai</p>
-                  <form action="<?=site_url('auth/process')?>" method="POST">
+                  <p class="login-box-msg">Isikan email atau username yang terdaftar</p>
+                  <form action="<?=site_url('auth/validateEmailOrUsername')?>" method="POST">
                       <div class="form-group has-feedback">
-                          <input type="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                          <input type="username" name="username" class="form-control" placeholder="Username or Email" required autofocus>
                           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                      </div>
-                      <div class="form-group has-feedback">
-                          <input type="password" name="password" class="form-control" placeholder="Password" required>
-                          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                       </div>
                       <div class="row">
                           <div class="col-xs-8">
                       </div>
                       <div class="col-xs-12">
                         <div class="" style="width: 100%">
-                            <button type="submit" name="login" class="btn btn-primary btn-block btn-flat">Sign In</button>
-                        </div>
-                        <div class="" style="width: 100%; margin-top : 10px; text-align: center">
-                            <a href="<?= base_url() ?>auth/forgotPassword">Lupa password</a>
+                            <button type="submit" name="login" class="btn btn-primary btn-block btn-flat">Submit</button>
                         </div>
                       </div>
                     <!-- /.col -->
