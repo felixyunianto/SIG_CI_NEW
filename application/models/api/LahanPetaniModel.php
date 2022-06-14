@@ -82,4 +82,67 @@ class LahanPetaniModel extends CI_Model {
         
         return $lahan->result();
     }
+
+    public function getDataForUser(){
+        $this->db->where('status', 1);
+
+        $query = $this->db->get("tb_lahanpertanian");
+
+        if($query->num_rows() > 0) {
+            $response = [];
+            $response['error'] = false;
+            $response['message'] = 'Successfully retrieved data';
+            $response['data']  = $query->result_array();
+            return $response;
+        }
+        return false;
+    }
+
+    public function getDataByDesaAndKecamatan(string $kecamatan, string $desa){
+        $where = array(
+            'status' => 1,
+            'kecamatan' => $kecamatan,
+            'desa' => $desa
+        );
+        $this-> db->where($where);
+
+        $query = $this->db->get("tb_lahanpertanian");
+
+        $data = $query->result_array();
+        // $data['koordinat'] = $this->getKecamatan($kecamatan);
+
+
+        $response = [];
+        $response['error'] = false;
+        $response['message'] = 'Successfully retrieved data';
+        $response['data']  = $data;
+        return $response;
+
+    }
+
+    public function getKecamatan(string $kecamatan){
+        $this->db->where('kecamatan',$kecamatan);
+        $query = $this->db->get("data_kecamatan");
+
+        $data = $query->result_array();
+
+        $response = [];
+        foreach($data as $key => $item){
+            $tempCoord = [];
+            foreach(json_decode($item['koordinat'])->koordinat[0] as $coord){
+                $tempCoord[] = [
+                    'latitude' => $coord[0],
+                    'longitude' => $coord[1],
+                ];
+            }
+            $response[] = [
+                'id' => $item['id'],
+                'kecamatan' => $item['kecamatan'],
+                'koordinat' => $tempCoord
+            ];
+        }
+        
+
+        return $response;
+    }
 }

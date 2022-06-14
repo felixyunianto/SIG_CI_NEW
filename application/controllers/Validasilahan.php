@@ -26,14 +26,14 @@ class Validasilahan extends CI_Controller {
         echo "<script>window.location='".site_url('validasilahan')."';</script>";
     }
 
-    // public function accept()
-    // {
-    //     $id = $this->input->post('id_komoditas');
-    //     $this->validasilahan_m->accept($id);
+    public function accept()
+    {
+        $id = $this->input->post('id_lahan');
+        $this->validasilahan_m->accept($id);
 
-    //     if($this->db->affected_rows() > 0) {
-    //         echo "<script>alert('Data berhasil diterima!');</script>";
-    //     } 
-    //     echo "<script>window.location='".site_url('validasilahan')."';</script>";
-    // }
+        if($this->db->affected_rows() > 0) {
+            echo "<script>alert('Data berhasil diterima!');</script>";
+        } 
+        echo "<script>window.location='".site_url('validasilahan')."';</script>";
+    }
 }

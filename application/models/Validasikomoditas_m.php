@@ -20,9 +20,12 @@ class Validasikomoditas_m extends CI_Model {
         $this->db->delete('tb_komoditas');
     }
 
-    // public function accept($id)
-	// {
-    //     $this->db->where('id_komoditas', $id);
-    //     $this->db->accept('tb_komoditas');
-    // }
+    public function accept($id)
+	{
+        $data = [
+            'status' => 1
+        ];
+        $this->db->where('id_komoditas', $id);
+        $this->db->update('tb_komoditas', $data);
+    }
 }

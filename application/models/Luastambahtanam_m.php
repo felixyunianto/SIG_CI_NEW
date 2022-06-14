@@ -40,4 +40,22 @@ class Luastambahtanam_m extends CI_Model {
         $this->db->where('id_komoditas', $id);
         $this->db->delete('ds_luastambahtanam');
     }
+
+    public function getChartData($awal = null, $akhir = null) {
+        $firstDate = date('Y-m-01'); // hard-coded '01' for first day
+        $lastDate  = date('Y-m-t');
+
+        if($awal && $akhir){
+            $this->db->where('awal >=', $awal);
+            $this->db->where('akhir <=', $akhir);
+        }else{
+            $this->db->where('awal >=', $firstDate);
+            $this->db->where('awal <=', $lastDate);
+            $this->db->where('akhir >=', $firstDate);
+            $this->db->where('akhir <=', $lastDate);
+        }
+
+        $response = $this->db->get("ds_luastambahtanam");
+        return $response;
+    }
 }

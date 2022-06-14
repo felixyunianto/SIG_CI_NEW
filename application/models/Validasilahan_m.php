@@ -20,9 +20,12 @@ class Validasilahan_m extends CI_Model {
         $this->db->delete('tb_lahanpertanian');
     }
 
-    // public function accept($id)
-	// {
-    //     $this->db->where('id_komoditas', $id);
-    //     $this->db->accept('tb_lahanpertanian');
-    // }
+    public function accept($id)
+	{
+        $data = [
+            'status' => 1
+        ];
+        $this->db->where('id_lahan', $id);
+        $this->db->update('tb_lahanpertanian', $data);
+    }
 }

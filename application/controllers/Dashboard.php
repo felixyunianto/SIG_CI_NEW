@@ -2,6 +2,11 @@
 
 class Dashboard extends CI_Controller {
 
+	public function __construct(){
+		parent::__construct();
+		$this->load->model("Produksi_m");
+	}
+
 	public function index()
 	{
 		check_not_login();

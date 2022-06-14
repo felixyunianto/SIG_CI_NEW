@@ -26,14 +26,14 @@ class Validasikomoditas extends CI_Controller {
         echo "<script>window.location='".site_url('validasikomoditas')."';</script>";
     }
 
-    // public function accept()
-    // {
-    //     $id = $this->input->post('id_komoditas');
-    //     $this->validasikomoditas_m->accept($id);
+    public function accept()
+    {
+        $id = $this->input->post('id_komoditas');
+        $this->validasikomoditas_m->accept($id);
 
-    //     if($this->db->affected_rows() > 0) {
-    //         echo "<script>alert('Data berhasil diterima!');</script>";
-    //     } 
-    //     echo "<script>window.location='".site_url('validasikomoditas')."';</script>";
-    // }
+        if($this->db->affected_rows() > 0) {
+            echo "<script>alert('Data berhasil diterima!');</script>";
+        } 
+        echo "<script>window.location='".site_url('validasikomoditas')."';</script>";
+    }
 }
