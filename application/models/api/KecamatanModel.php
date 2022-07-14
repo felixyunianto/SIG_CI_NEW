@@ -20,4 +20,11 @@ class KecamatanModel extends CI_Model {
         return $data;
     }
 
+    public function getByName(string $nama_kecamatan){
+        $this->db->where('kecamatan', $nama_kecamatan);
+        $data =  $this->db->get('data_kecamatan');
+
+        return $data;
+    }
+
 }

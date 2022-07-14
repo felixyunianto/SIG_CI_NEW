@@ -20,4 +20,11 @@ class DesaModel extends CI_Model {
         return $data;
     }
 
+    public function getDesaByKecamatan(int $id_kecamatan){
+        $this->db->where('wilayah_id', $id_kecamatan);
+        $data = $this->db->get("data_desa");
+
+        return $data;
+    }
+
 }

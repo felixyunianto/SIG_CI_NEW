@@ -6,7 +6,7 @@ try {
 	//Config
 	$host = "localhost";
 	$username = "root";
-	$password = "felixsmapite50";
+	$password = "";
 	$dbname = "dbsig";
 
 
