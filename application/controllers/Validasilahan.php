@@ -21,6 +21,7 @@ class Validasilahan extends CI_Controller {
         $this->validasilahan_m->delete($id);
 
         if($this->db->affected_rows() > 0) {
+            createHistory("Menghapus lahan pertanian");
             echo "<script>alert('Data berhasil dihapus!');</script>";
         } 
         echo "<script>window.location='".site_url('validasilahan')."';</script>";
@@ -30,6 +31,8 @@ class Validasilahan extends CI_Controller {
     {
         $id = $this->input->post('id_lahan');
         $this->validasilahan_m->accept($id);
+
+        createHistory("Konfirmasi lahan pertanian");
 
         if($this->db->affected_rows() > 0) {
             echo "<script>alert('Data berhasil diterima!');</script>";

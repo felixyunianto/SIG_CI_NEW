@@ -35,11 +35,13 @@ class User extends CI_Controller {
         $this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
         if ($this->form_validation->run() == FALSE) {
+            
             $this->template->load('template', 'user/user_form_add');
         } else {
             $post = $this->input->post(null, TRUE);
             $this->user_m->add($post);
             if($this->db->affected_rows() > 0) {
+                createHistory("Menambahkan admin dengan nama ".$post["fullname"]);
                 echo "<script>alert('Data berhasil disimpan!');</script>";
             } 
             echo "<script>window.location='".site_url('user')."';</script>";
@@ -84,6 +86,7 @@ class User extends CI_Controller {
             $post = $this->input->post(null, TRUE);
             $this->user_m->edit($post);
             if($this->db->affected_rows() > 0) {
+                createHistory("Mengubah admin dengan nama ".$post["fullname"]);
                 echo "<script>alert('Data berhasil diubah!');</script>";
             } 
             echo "<script>window.location='".site_url('user')."';</script>";
@@ -93,9 +96,12 @@ class User extends CI_Controller {
     public function delete()
     {
         $id = $this->input->post('user_id');
-        $this->user_m->delete($id);
+        $user = $this->user_m->get($id);
+
+        $data = $this->user_m->delete($id);
 
         if($this->db->affected_rows() > 0) {
+            createHistory("Mengubah admin dengan nama ".$user->result()[0]->fullname);
             echo "<script>alert('Data berhasil dihapus!');</script>";
         } 
         echo "<script>window.location='".site_url('user')."';</script>";

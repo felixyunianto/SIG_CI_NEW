@@ -21,6 +21,7 @@ class Validasikomoditas extends CI_Controller {
         $this->validasikomoditas_m->delete($id);
 
         if($this->db->affected_rows() > 0) {
+            createHistory("Menghapus komoditas hasil panen");
             echo "<script>alert('Data berhasil dihapus!');</script>";
         } 
         echo "<script>window.location='".site_url('validasikomoditas')."';</script>";
@@ -30,6 +31,7 @@ class Validasikomoditas extends CI_Controller {
     {
         $id = $this->input->post('id_komoditas');
         $this->validasikomoditas_m->accept($id);
+        createHistory("Konfirmasi komoditas hasil panen");
 
         if($this->db->affected_rows() > 0) {
             echo "<script>alert('Data berhasil diterima!');</script>";

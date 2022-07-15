@@ -33,6 +33,7 @@ class Provitas extends CI_Controller {
             $post = $this->input->post(null, TRUE);
 			$this->provitas_m->add($post);
 			if($this->db->affected_rows() > 0) {
+                createHistory("Menambahkan data statistik provitas dengan nama komoditas ".$post["namakomoditas"]);
                 echo "<script>alert('Data berhasil disimpan!');</script>";
             } echo "<script>window.location='".site_url('provitas')."';</script>";
         }
@@ -65,6 +66,7 @@ class Provitas extends CI_Controller {
             $post = $this->input->post(null, TRUE);
             $this->provitas_m->edit($post);
             if($this->db->affected_rows() > 0) {
+                createHistory("Mengubah data statistik provitas dengan nama komoditas ".$post["namakomoditas"]);
                 echo "<script>alert('Data berhasil diubah!');</script>";
             } 
             echo "<script>window.location='".site_url('provitas')."';</script>";
@@ -74,9 +76,11 @@ class Provitas extends CI_Controller {
 	public function delete()
     {
         $id = $this->input->post('id_komoditas');
+        $data = $this->provitas_m->get($id);
         $this->provitas_m->delete($id);
 
         if($this->db->affected_rows() > 0) {
+            createHistory("Menghapus data statistik produk dengan nama komoditas ".$data->result()[0]->namakomoditas);
             echo "<script>alert('Data berhasil dihapus!');</script>";
         } 
         echo "<script>window.location='".site_url('provitas')."';</script>";

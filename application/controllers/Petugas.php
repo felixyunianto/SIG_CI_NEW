@@ -38,6 +38,7 @@ class Petugas extends CI_Controller {
             $post = $this->input->post(null, TRUE);
             $this->petugas_m->add($post);
             if($this->db->affected_rows() > 0) {
+                createHistory("Menambahkan petugas dengan nama ".$post["fullname"]);
                 echo "<script>alert('Data berhasil disimpan!');</script>";
             } 
             echo "<script>window.location='".site_url('petugas')."';</script>";
@@ -79,6 +80,7 @@ class Petugas extends CI_Controller {
             $post = $this->input->post(null, TRUE);
             $this->petugas_m->edit($post);
             if($this->db->affected_rows() > 0) {
+                createHistory("Mengubah petugas dengan nama ".$post["fullname"]);
                 echo "<script>alert('Data berhasil disimpan!');</script>";
             } 
             echo "<script>window.location='".site_url('petugas')."';</script>";
@@ -88,9 +90,11 @@ class Petugas extends CI_Controller {
     public function delete()
     {
         $id = $this->input->post('id');
+        $user = $this->petugas_m->get($id);
         $this->petugas_m->delete($id);
 
         if($this->db->affected_rows() > 0) {
+            createHistory("Menghapus petugas dengan nama ".$user->result()[0]->fullname);
             echo "<script>alert('Data berhasil dihapus!');</script>";
         } 
         echo "<script>window.location='".site_url('petugas')."';</script>";

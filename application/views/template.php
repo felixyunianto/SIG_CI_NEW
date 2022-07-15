@@ -208,6 +208,9 @@
         <li class="header">SETTINGS</li>
         <li><a href="<?=site_url('user')?>"><i class="fa fa-circle-o text-aqua"></i> <span>Input User Admin</span></a></li>
         <li><a href="<?=site_url('petugas')?>"><i class="fa fa-circle-o text-aqua"></i> <span>Input Petugas</span></a></li>
+
+        <li class="header">HISTORY</li>
+        <li><a href="<?=site_url('history')?>"><i class="fa fa-circle-o text-aqua"></i> <span>History</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

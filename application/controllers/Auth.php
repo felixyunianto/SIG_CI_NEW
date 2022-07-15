@@ -22,9 +22,11 @@ class Auth extends CI_Controller {
 			if($query->num_rows() > 0){
 				$row = $query->row();
 				$params = array(
-					'user_id' => $row->user_id
+					'user_id' => $row->user_id,
+					"name" => $row->fullname
 				);
 				$this->session->set_userdata($params);
+				createHistory($row->fullname." telah login");
 				echo "<script>
 					alert('Selamat, anda berhasil login');
 					window.location='".site_url('dashboard')."';
