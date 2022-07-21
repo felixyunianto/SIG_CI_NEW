@@ -14,23 +14,43 @@ class KomoditasLahanModel extends CI_Model {
     }
 
     public function create(string $namakomoditas, string $jumlah, string $awal, string $akhir,string $desa,string $kecamatan){
-        $data = [
-            'namakomoditas' => $namakomoditas,
-            'jumlah' => $jumlah,
-            'awal' => $awal,
-            'akhir' => $akhir,
-            'desa' => $desa,
-            'kecamatan' => $kecamatan
-        ];
+        $this->db->where('namakomoditas', $namakomoditas);
+        $this->db->where('awal', $awal);
+        $this->db->where('akhir', $akhir);
+        $dataExist = $this->db->get('tb_komoditas');
+        
 
-        $insert = $this->db->insert('tb_komoditas', $data);
-
-        if ($insert) {
-            $response = array();
+        if(count($dataExist->result_array())) {
+            $response['data'] = count($dataExist->result_array());
             $response['error'] = false;
-            $response['pesan'] = 'Successfully added data';
+            $response['pesan'] = 'Data dengan nama tersebut sudah ada';
             return $response;
-         }
+        }else{
+            $data = [
+                'namakomoditas' => $namakomoditas,
+                'jumlah' => $jumlah,
+                'awal' => $awal,
+                'akhir' => $akhir,
+                'desa' => $desa,
+                'kecamatan' => $kecamatan
+            ];
+            
+
+            $insert = $this->db->insert('tb_komoditas', $data);
+
+            return $response;
+            if ($insert) {
+                $response = $dataExist;
+                $response['error'] = false;
+                $response['pesan'] = 'Successfully added data';
+                return $response;
+             }
+        }
+
+        
+
+        
+       
          return false;
     }
 
