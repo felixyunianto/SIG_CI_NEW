@@ -38,9 +38,8 @@ class KomoditasLahanModel extends CI_Model {
 
             $insert = $this->db->insert('tb_komoditas', $data);
 
-            return $response;
             if ($insert) {
-                $response = $dataExist;
+                $response['data'] = $insert;
                 $response['error'] = false;
                 $response['pesan'] = 'Successfully added data';
                 return $response;
