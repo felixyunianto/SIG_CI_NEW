@@ -201,11 +201,11 @@
                 <div class="" style="width: 100%;display:flex; justify-content:space-between">
                   <div class="" style="display:flex;align-items:center">
                     <label for="">Awal : </label>
-                    <input type="date" name="awal" id="awal-luasnpanen" style="margin-left: 10px">
+                    <input type="date" name="awal" id="awal-luaspanen" style="margin-left: 10px">
                   </div>
                   <div class="" style="display:flex;align-items:center">
                     <label for="">Akhir : </label>
-                    <input type="date" name="akhir" id="akhir-luasnpanen" style="margin-left: 10px">
+                    <input type="date" name="akhir" id="akhir-luaspanen" style="margin-left: 10px">
                   </div>
                   <div class="">
                     <button class="btn" id="btnLuasPanen" style="background : #00C0EF; color: white">submit</button>
