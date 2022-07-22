@@ -55,6 +55,10 @@ class Luastambahtanam_m extends CI_Model {
             $this->db->where('akhir <=', $lastDate);
         }
 
+        $this->db->select('namakomoditas, SUM(jumlah) as jumlah');
+        $this->db->group_by('namakomoditas'); 
+        $this->db->order_by('jumlah', 'desc'); 
+
         $response = $this->db->get("ds_luastambahtanam");
         return $response;
     }
