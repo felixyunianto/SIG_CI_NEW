@@ -21,7 +21,6 @@ class KomoditasLahanModel extends CI_Model {
         
 
         if(count($dataExist->result_array())) {
-            $response['data'] = count($dataExist->result_array());
             $response['error'] = false;
             $response['pesan'] = 'Data dengan nama tersebut sudah ada';
             return $response;
@@ -39,7 +38,6 @@ class KomoditasLahanModel extends CI_Model {
             $insert = $this->db->insert('tb_komoditas', $data);
 
             if ($insert) {
-                $response['data'] = $insert;
                 $response['error'] = false;
                 $response['pesan'] = 'Successfully added data';
                 return $response;
