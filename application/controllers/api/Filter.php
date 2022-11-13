@@ -9,7 +9,10 @@ class Filter extends CI_Controller{
     }
 
     function sortingKomoditasByDesa() {
-        $data = $this->KomoditasLahanModel->sortingKomoditas('padi', '2020-12-01', '2021-12-24');
+        $namakomoditas = $this->input->get("namakomoditas");
+        $awal = $this->input->get("awal");
+        $akhir = $this->input->get("akhir");
+        $data = $this->KomoditasLahanModel->sortingKomoditas($namakomoditas, $awal, $akhir);
 
         echo json_encode([
             "error" => false,
