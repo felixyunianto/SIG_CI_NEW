@@ -95,5 +95,17 @@ class KomoditasLahanModel extends CI_Model {
 
         return $data;
     }
+
+    public function sortingKomoditas($namakomoditas, $awal, $akhir) {
+        $this->db->select("namakomoditas, desa, SUM(jumlah) as total");
+        $this->db->where('awal >=', $awal);
+        $this->db->where('akhir <=', $akhir);
+        $this->db->where('namakomoditas', $namakomoditas);
+        $this->db->group_by('namakomoditas, desa'); 
+        $this->db->order_by('total', 'desc');
+        $data = $this->db->get('tb_komoditas');
+
+        return $data->result_array();
+    }
     
 }
